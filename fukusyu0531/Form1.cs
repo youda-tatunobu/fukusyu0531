@@ -14,7 +14,7 @@ namespace fukusyu0531
     {
         int vx=3, vy=4;
 
-        int count=0,m=0,s=0;
+        int count=0,m=0,s=0,f=0;
         public Form1()
         {
             InitializeComponent();
@@ -55,6 +55,22 @@ namespace fukusyu0531
             }
 
             textBox1.Text = "跳ね返り" + count + "回です";
+
+            f++;
+
+            if(f==1)
+            {
+                s++;
+                f=0;
+
+            }else if(s==60){
+
+                m++;
+                s = 0;
+                
+            }
+            textBox3.Text = m+ ":"+ s;
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -64,8 +80,13 @@ namespace fukusyu0531
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("" + ClientSize.Width + " " + ClientSize.Height);
-            MessageBox.Show("" + label1.Width + " " + label1.Height);
+            //MessageBox.Show("" + ClientSize.Width + " " + ClientSize.Height);
+            //MessageBox.Show("" + label1.Width + " " + label1.Height);
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
