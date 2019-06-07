@@ -18,11 +18,12 @@ namespace fukusyu0531
         public Form1()
         {
             InitializeComponent();
+            //pictureBox1.ImageLocation = @"brook2.png";
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+         
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -31,34 +32,44 @@ namespace fukusyu0531
             Text = MousePosition.X + "" + MousePosition.Y;
             Point p = PointToClient(MousePosition);
 
-            label2.Left = p.X - label2.Width/2;
-            label2.Top = p.Y - label2.Height/2;
+            textBox2.Left = p.X - textBox2.Width / 2;
+            textBox2.Top = p.Y - textBox2.Height / 2;
 
 
             label1.Left += vx;
             label1.Top += vy;
 
+      
+
             if (label1.Left >= ClientSize.Height - label1.Height)
             {
-                vx = -vx; //Math.Abs(vx);
+                vx = -Math.Abs(vx);
+                label1.Left += vx;
+                label1.Top += vy;
                 count++;
             }
 
             if (label1.Left <= 0)
             {
                 vx = -vx;
+                label1.Left += vx;
+                label1.Top += vy;
                 count++;
             }
 
             if (label1.Top >= ClientSize.Width - label1.Width)
             {
-                vy = -vy;//Math.Abs(vy);
+                vy = -Math.Abs(vy);
+                label1.Left += vx;
+                label1.Top += vy;
                 count++;
             }
 
             if (label1.Top <= 0)
             {
-                vy = -vy; 
+                vy = -vy;
+                label1.Left += vx;
+                label1.Top += vy;
                 count++;
             }
 
@@ -66,7 +77,7 @@ namespace fukusyu0531
 
             f++;
             
-            if(f==60)
+            if(f==30)
             {
                 s++;
                 f=0;
@@ -79,13 +90,19 @@ namespace fukusyu0531
             }
             textBox3.Text = m+"分" + s　+"秒";
 
-            if ((label1.Left <= p.X )&&(label1.Right>=p.X)&&(label1.Top<=p.Y)&&(label1.Bottom>=p.Y))
+            if ((label1.Left < textBox2.Right) && (label1.Right >textBox2.Left) && (label1.Top < textBox2.Bottom) && (label1.Bottom > textBox2.Top))
             {
-                label1.Left -= vx;
-                label1.Top -= vy;
+               vx = -vx;
+               vy = -vy;
+               label1.Left += 5*vx;
+               label1.Top += 5*vy;
+               count++;
                
             }
 
+            
+   
+           
         
 
         }
@@ -106,9 +123,16 @@ namespace fukusyu0531
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+        
     }
 }
